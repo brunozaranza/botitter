@@ -5,32 +5,32 @@ class User {
   String id;
   String createdAt;
   String name;
-  String avatar;
+  String profilePicture;
   String email;
 
   User({
-    @required this.id,
     @required this.name,
     @required this.email,
-    this.avatar,
+    this.profilePicture,
+    this.id,
   }) {
     this.createdAt = DateUtil.current();
   }
 
   User.fromJson(Map<String, dynamic> map) {
     this.id = map["id"];
-    this.createdAt = map["createdAt"];
+    this.createdAt = map["created_at"];
     this.name = map["name"];
-    this.avatar = map["avatar"];
+    this.profilePicture = map["profile_picture"];
     this.email = map["email"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['createdAt'] = this.createdAt;
+    data['created_at'] = this.createdAt;
     data['name'] = this.name;
-    data['avatar'] = this.avatar;
+    data['profile_picture'] = this.profilePicture;
     data['email'] = this.email;
     return data;
   }
@@ -38,6 +38,7 @@ class User {
 
   @override
   String toString() {
-    return '{id: $id, createdAt: $createdAt, name: $name, avatar: $avatar, email: $email}';
+    return '{id: $id, created_at: $createdAt, name: $name, '
+        'profile_picture: $profilePicture, email: $email}';
   }
 }

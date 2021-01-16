@@ -4,13 +4,12 @@ class DateUtil {
   static String current(){
     DateTime now = DateTime.now();
     return formatDate(now, [yyyy, '-', mm, '-', dd, 'T', HH, ':', nn, ':', ss,
-      '.', Z, 'Z']);
+      '.', SSS, z]);
   }
 
   static String parseDateToString(DateTime date) {
     return formatDate(
         date, [yyyy, '-', mm, '-', dd, 'T', HH, ':', nn, ':', ss,
-      '.', Z, 'Z']);
+      '.', SSS, z]);
   }
-
 }

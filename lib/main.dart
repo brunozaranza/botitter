@@ -1,6 +1,9 @@
+import 'package:bottiter/core/repository/service/bot_new_service.dart';
 import 'package:bottiter/core/repository/service/post_service.dart';
 import 'package:bottiter/core/repository/service/user_service.dart';
 import 'package:flutter/material.dart';
+
+import 'core/model/post.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    PostService().requestPosts();
+    BotNewService().requestAll();
 
     return Scaffold(
       appBar: AppBar(
