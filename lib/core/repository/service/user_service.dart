@@ -17,6 +17,15 @@ class UserService extends BaseService {
     }
   }
 
+  Future<ApiResponse<User>> requestBy({String id}) async {
+    ApiResponse response = await getItem(endpoint: "user/$id");
+    if (response.success) {
+      return ApiResponse.success(User.fromJson(response.result));
+    } else {
+      return ApiResponse.error(response.msg);
+    }
+  }
+
   Future<ApiResponse<User>> add(User user) async {
     ApiResponse response = await postItem(
       endpoint: "user",
