@@ -1,3 +1,4 @@
+import 'package:bottiter/core/model/user.dart';
 import 'package:bottiter/core/util/date_util.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class Post {
   String content;
   String imageUrl;
   String link;
-  String user;
+  User user;
 
   Post({
     this.id,
@@ -28,7 +29,7 @@ class Post {
     this.content = map["content"];
     this.imageUrl = map["image_url"];
     this.link = map["link"];
-    this.user = map["user"];
+    if(map.containsKey("user")) this.user = User.fromJson(map["user"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -46,6 +47,6 @@ class Post {
   @override
   String toString() {
     return '{id: $id, created_at: $createdAt, edited_at: $editedAt, '
-        'content: $content, image_url: $imageUrl, link: $link, user: $user}';
+        'content: $content, image_url: $imageUrl, link: $link, user: ${user.toString()}';
   }
 }
