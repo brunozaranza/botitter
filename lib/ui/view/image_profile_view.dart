@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class ImageProfileView extends StatelessWidget {
 
   final String profilePicture;
+  final double size;
 
-  ImageProfileView(this.profilePicture);
+  ImageProfileView(this.profilePicture, {this.size = 40.0});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +25,8 @@ class ImageProfileView extends StatelessWidget {
         child: ClipOval(
           child: Image.network(
             profilePicture ?? ImageUtil.imgDefault,
-            width: 40,
-            height: 40,
+            width: size,
+            height: size,
             fit: BoxFit.cover,
           ),
         ),

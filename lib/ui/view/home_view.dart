@@ -2,6 +2,7 @@ import 'package:bottiter/core/model/post.dart';
 import 'package:bottiter/core/model/user.dart';
 import 'package:bottiter/core/store/home_store.dart';
 import 'package:bottiter/core/viewmodel/home_viewmodel.dart';
+import 'package:bottiter/core/viewmodel/login_viewmodel.dart';
 import 'package:bottiter/ui/view/error_view.dart';
 import 'package:bottiter/ui/view/generic_list_view.dart';
 import 'package:bottiter/ui/view/loading_view.dart';
@@ -30,9 +31,8 @@ class _HomeViewState extends State<HomeView>
   Widget build(BuildContext context) {
     super.build(context);
 
-    if (_viewModel == null) {
-      _viewModel = Provider.of<HomeViewModel>(context);
-    }
+    _viewModel = Provider.of<HomeViewModel>(context);
+    LoginViewModel userViewModel = Provider.of<LoginViewModel>(context);
 
     return Observer(builder: (_) {
 
@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView>
         },
         onRefresh: () => _viewModel.fetchAll(),
         list: _viewModel.list,
-        user: User(name: "teste"),
+        user: userViewModel.user,
       );
     });
   }

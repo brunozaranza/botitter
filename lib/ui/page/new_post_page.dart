@@ -1,10 +1,11 @@
 import 'package:bottiter/core/model/post.dart';
 import 'package:bottiter/core/model/user.dart';
 import 'package:bottiter/core/util/image_util.dart';
+import 'package:bottiter/core/viewmodel/login_viewmodel.dart';
 import 'package:bottiter/core/viewmodel/new_post_viewmodel.dart';
 import 'package:bottiter/ui/view/image_profile_view.dart';
-import 'package:bottiter/ui/view/loading_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NewPostPage extends StatefulWidget {
   @override
@@ -15,12 +16,13 @@ class _NewPostPageState extends State<NewPostPage> {
   TextEditingController _controller = TextEditingController();
   FocusNode _focusNode = FocusNode();
   NewPostViewModel _viewModel;
+  User _user;
 
   _onPressed() {
     setState(() {
       _viewModel.isLoading = true;
     });
-    _viewModel.addPost(Post(user: User(name: "Test"), content: _controller.text)).then((isSuccess) {
+    _viewModel.addPost(Post(user: _user, content: _controller.text)).then((isSuccess) {
       if(isSuccess) {
         Navigator.pop(context);
       } else {
@@ -115,7 +117,7 @@ class _NewPostPageState extends State<NewPostPage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(6.0),
-              child: ImageProfileView(ImageUtil.imgDefault),
+              child: ImageProfileView(_user.profilePicture),
             ),
             Expanded(
               child: Padding(
@@ -144,6 +146,8 @@ class _NewPostPageState extends State<NewPostPage> {
     if (_viewModel == null) {
       _viewModel = NewPostViewModel();
     }
+
+    _user = Provider.of<LoginViewModel>(context).user;
 
     return Scaffold(
       appBar: _appBar(),

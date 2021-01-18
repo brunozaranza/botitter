@@ -24,7 +24,7 @@ class HomeViewModel {
     if (response.success) {
       return response.result;
     } else {
-      return User(name: "Undefined", email: "");
+      return null;
     }
   }
 

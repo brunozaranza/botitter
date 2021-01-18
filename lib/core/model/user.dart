@@ -11,10 +11,11 @@ class User {
   User({
     @required this.name,
     this.email,
+    this.createdAt,
     this.profilePicture,
     this.id,
   }) {
-    this.createdAt = DateUtil.current();
+    if(this.createdAt == null) this.createdAt = DateUtil.current();
   }
 
   User.fromJson(Map<String, dynamic> map) {

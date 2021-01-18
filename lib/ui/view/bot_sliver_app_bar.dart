@@ -1,6 +1,9 @@
 import 'package:bottiter/core/model/user.dart';
+import 'package:bottiter/ui/page/login_page.dart';
+import 'package:bottiter/ui/view/image_profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:bottiter/core/repository/database/database.dart';
 
 class BotSliverAppBar extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
@@ -27,7 +30,7 @@ class BotSliverAppBar extends SliverPersistentHeaderDelegate {
           user == null
               ? Container()
               : Positioned(
-                  top: 35,
+                  top: 45,
                   child: Opacity(
                     opacity: (1 - shrinkOffset / expandedHeight),
                     child: SizedBox(
@@ -35,20 +38,28 @@ class BotSliverAppBar extends SliverPersistentHeaderDelegate {
                       width: MediaQuery.of(context).size.width,
                       child: ListTile(
                         leading: user.profilePicture != null
-                            ? Image.network(user.profilePicture)
+                            ? ImageProfileView(user.profilePicture, size: 30)
                             : Icon(
                                 Icons.account_circle_outlined,
                                 color: Colors.grey.shade900,
                               ),
-                        trailing: Icon(
-                          Icons.edit,
-                          color: Colors.grey.shade900,
-                          size: 20,
-                        ),
+                        trailing: Container(
+                            width: 60,
+                            child: FlatButton(
+                                onPressed: () {
+                                  Database.saveUser(null);
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => LoginPage()));
+                                },
+                                child: Text(
+                                  "SAIR",
+                                  style: TextStyle(
+                                      color: Colors.blue, fontSize: 12),
+                                ))),
                         title: Text(
                           user.name,
                           style: TextStyle(
-                              color: Colors.grey.shade900, fontWeight: FontWeight.w500),
+                              color: Colors.grey.shade900,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),

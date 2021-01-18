@@ -21,6 +21,8 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage>
   HomeView home = HomeView();
   NewsListView news = NewsListView();
 
+  HomeViewModel _homeViewModel;
+
   @override
   void dispose() {
     home = null;
@@ -43,12 +45,14 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage>
     Navigator.push(context, MaterialPageRoute(builder: (_) {
       return NewPostPage();
     })).then((_) {
-      Provider.of<HomeViewModel>(context).fetchAll();
+      _homeViewModel.fetchAll();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
+    _homeViewModel = Provider.of<HomeViewModel>(context);
 
     return Scaffold(
       body: _body(),

@@ -31,6 +31,7 @@ class LoadingView extends StatelessWidget {
                 value: value,
                 strokeWidth: stroke,
                 backgroundColor: backgroundColor,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
               ),
             ),
             SizedBox(height: 8),
