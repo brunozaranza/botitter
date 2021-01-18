@@ -33,6 +33,15 @@ class LoginViewModel {
     }
   }
 
+  Future<User> addUser(User user) async {
+    ApiResponse<User> response = await UserService().add(user);
+    if(response.success) {
+      return response.result;
+    } else {
+      return null;
+    }
+  }
+
   saveUser(User user) {
     Database.saveUser(user);
   }

@@ -1,3 +1,4 @@
+import 'package:bottiter/core/model/user.dart';
 import 'package:bottiter/core/viewmodel/login_viewmodel.dart';
 import 'package:bottiter/ui/custom_widget/bot_text_form_field.dart';
 import 'package:bottiter/ui/page/bottom_navigation_bar_page.dart';
@@ -193,8 +194,11 @@ class _LoginPageState extends State<LoginPage> {
 
   _buildSignUpBtn() {
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => RegisterPage())),
+      onTap: () async {
+        User user = await Navigator.push(
+            context, MaterialPageRoute(builder: (context) => RegisterPage()));
+        if(user!=null) showMessageDialog("Usuário cadastrado com sucesso");
+      },
       child: RichText(
         text: TextSpan(
           children: [

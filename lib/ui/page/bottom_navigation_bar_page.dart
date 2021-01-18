@@ -58,7 +58,8 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage>
       body: _body(),
       floatingActionButton: _selectedIndex == 0
           ? FloatingActionButton(
-              child: Icon(Icons.add),
+        backgroundColor: Colors.orange,
+              child: Icon(Icons.add, color: Colors.white),
               onPressed: _onFloatingActionButtonPressed,
             )
           : null,
