@@ -122,7 +122,7 @@ class _NewPostPageState extends State<NewPostPage> {
         ),
       )
           : Container(
-        width: 80,
+        width: 90,
           decoration: BoxDecoration(
             color:
             _viewModel.isButtonDisabled ? Colors.grey : Colors.blue,
@@ -133,7 +133,7 @@ class _NewPostPageState extends State<NewPostPage> {
               _viewModel.isButtonDisabled ? null : _onPressed,
               child: Text(
                 widget.editPost != null ? "EDITAR" : "POSTAR",
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 12,),
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 11,),
               ))),
     );
   }

@@ -5,14 +5,12 @@ import 'package:timeago/timeago.dart' as timeAgo;
 class DateUtil {
   static String current(){
     DateTime now = DateTime.now();
-    return formatDate(now, [yyyy, '-', mm, '-', dd, 'T', HH, ':', nn, ':', ss,
-      '.', SSS, z]);
+    return formatDate(now, [yyyy, '-', mm, '-', dd, 'T', HH, ':', nn, ':', ss]);
   }
 
   static String parseDateToString(DateTime date) {
     return formatDate(
-        date, [yyyy, '-', mm, '-', dd, 'T', HH, ':', nn, ':', ss,
-      '.', SSS, z]);
+        date, [yyyy, '-', mm, '-', dd, 'T', HH, ':', nn, ':', ss]);
   }
 
   static String textTimeAgo(String fromDate) {
@@ -22,5 +20,4 @@ class DateUtil {
 
     return timeAgo.format(date, locale: "pt_BR", allowFromNow: true);
   }
-
 }

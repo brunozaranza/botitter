@@ -37,7 +37,7 @@ class BotSliverAppBar extends SliverPersistentHeaderDelegate {
                       width: MediaQuery.of(context).size.width,
                       child: ListTile(
                         trailing: Container(
-                            width: 60,
+                            width: 70,
                             child: FlatButton(
                                 onPressed: () {
                                   Database.saveUser(null);
@@ -46,7 +46,7 @@ class BotSliverAppBar extends SliverPersistentHeaderDelegate {
                                 child: Text(
                                   "SAIR",
                                   style: TextStyle(
-                                      color: Colors.blue, fontSize: 12),
+                                      color: Colors.blue, fontSize: 11, fontWeight: FontWeight.bold),
                                 ))),
                         title: Text(
                           "Bem-vinde, ${user.name}",
