@@ -38,17 +38,17 @@ class BotSliverAppBar extends SliverPersistentHeaderDelegate {
                             ? Image.network(user.profilePicture)
                             : Icon(
                                 Icons.account_circle_outlined,
-                                color: Colors.white,
+                                color: Colors.grey.shade900,
                               ),
                         trailing: Icon(
                           Icons.edit,
-                          color: Colors.white,
+                          color: Colors.grey.shade900,
                           size: 20,
                         ),
                         title: Text(
                           user.name,
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w500),
+                              color: Colors.grey.shade900, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),

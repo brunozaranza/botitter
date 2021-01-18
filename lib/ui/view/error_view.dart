@@ -15,7 +15,7 @@ class _ErrorState extends State<BotErrorView> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text(widget.msg?? "houve um erro"),
+        child: Text(widget.msg?? "Houve um erro"),
       ),
     );
   }

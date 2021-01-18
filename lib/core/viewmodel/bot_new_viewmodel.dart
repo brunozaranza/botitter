@@ -20,6 +20,14 @@ class BotNewViewModel {
 
   List<BotNew> get list {
     if(this.store.news == null) fetchAll();
+    else {
+      this.store.news.sort((a, b) {
+        DateTime date1 = DateTime.parse(a.post.createdAt);
+        DateTime date2 = DateTime.parse(b.post.createdAt);
+
+        return date2.compareTo(date1);
+      });
+    }
     return this.store.news;
   }
 

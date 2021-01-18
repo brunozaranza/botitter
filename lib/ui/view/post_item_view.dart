@@ -1,86 +1,32 @@
+import 'package:bottiter/core/model/post.dart';
 import 'package:bottiter/core/util/date_util.dart';
+import 'package:bottiter/core/util/image_util.dart';
+import 'package:bottiter/core/util/launch_util.dart';
+import 'package:bottiter/ui/view/image_profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class PostItemView extends StatefulWidget {
-  final String profileUrl;
-  final String name;
-  final String content;
-  final String date;
-  final String imageContentUrl;
-  final String link;
+class PostItemView extends StatelessWidget {
+
+  final Post post;
 
   PostItemView({
-    this.profileUrl =
-        "https://media-exp1.licdn.com/dms/image/C4D0BAQE-T3s9Xp0otw/company-logo_200_200/0/1610139063759?e=1619049600&v=beta&t=5lF89geWt4pHpcWeDRKI8cv7doApDANTItWYsXu_vBQ",
-    @required this.name,
-    @required this.content,
-    @required this.date,
-    this.imageContentUrl,
-    this.link,
+    this.post,
   });
-
-  @override
-  _PostItemViewState createState() => _PostItemViewState();
-}
-
-class _PostItemViewState extends State<PostItemView>
-    with AutomaticKeepAliveClientMixin<PostItemView> {
-
-  @override
-  bool get wantKeepAlive => true;
-
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  _imageProfile() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                blurRadius: 10.0,
-                spreadRadius: 0.1,
-                color: Colors.grey.shade300)
-          ],
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ClipOval(
-          child: Image.network(
-            widget.profileUrl,
-            width: 40,
-            height: 40,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-    );
-  }
 
   _userInfo() {
     return Row(
       children: [
         Text(
-          widget.name,
+          post.user.name,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
         ),
         SizedBox(width: 4.0),
         Text("•"),
         SizedBox(width: 4.0),
         Text(
-          DateUtil.textTimeAgo(widget.date),
+          DateUtil.textTimeAgo(post.createdAt),
           style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
         ),
       ],
@@ -88,7 +34,7 @@ class _PostItemViewState extends State<PostItemView>
   }
 
   _content() {
-    return Text(widget.content);
+    return Text(post.content);
   }
 
   _postItem() {
@@ -98,7 +44,7 @@ class _PostItemViewState extends State<PostItemView>
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _imageProfile(),
+            ImageProfileView(post.user.profilePicture),
             Expanded(
               child: Padding(
                 padding:
@@ -109,14 +55,14 @@ class _PostItemViewState extends State<PostItemView>
                     _userInfo(),
                     SizedBox(height: 2),
                     _content(),
-                    widget.imageContentUrl == null
+                    post.imageUrl == null
                         ? Container()
                         : Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: InkWell(
-                                onTap: () => _launchInBrowser(widget.link),
+                                onTap: () => LaunchUtil.launchInBrowser(post.link),
                                 child: Card(
-                                  child: Image.network(widget.imageContentUrl),
+                                  child: Image.network(post.imageUrl),
                                 )),
                           )
                   ],

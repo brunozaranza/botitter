@@ -1,5 +1,7 @@
 import 'package:bottiter/core/store/bot_new_store.dart';
 import 'package:bottiter/core/store/home_store.dart';
+import 'package:bottiter/core/viewmodel/bot_new_viewmodel.dart';
+import 'package:bottiter/core/viewmodel/home_viewmodel.dart';
 import 'package:bottiter/ui/page/bottom_navigation_bar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,8 +9,8 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      Provider<HomeStore>.value(value: HomeStore()),
-      Provider<BotNewStore>.value(value: BotNewStore()),
+      Provider<HomeViewModel>.value(value: HomeViewModel(store: HomeStore())),
+      Provider<BotNewViewModel>.value(value: BotNewViewModel(store: BotNewStore())),
     ],
     child: BottiterApp(),
   ));
@@ -22,7 +24,8 @@ class BottiterApp extends StatelessWidget {
       title: 'Boticário Microblogging',
       theme: ThemeData(
         fontFamily: "Raleway",
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
+        accentColor: Colors.grey.shade100,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: BottomNavigationBarPage(),

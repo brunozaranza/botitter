@@ -1,6 +1,5 @@
 import 'package:bottiter/core/model/user.dart';
 import 'package:bottiter/core/util/date_util.dart';
-import 'package:flutter/material.dart';
 
 class Post {
   String id;
@@ -15,11 +14,12 @@ class Post {
     this.id,
     this.user,
     this.content,
+    this.createdAt,
     this.imageUrl,
     this.editedAt,
     this.link,
   }) {
-    this.createdAt = DateUtil.current();
+    if(this.createdAt == null) this.createdAt = DateUtil.current();
   }
 
   Post.fromJson(Map<String, dynamic> map) {
