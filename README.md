@@ -22,6 +22,16 @@ O colaborador também poderá visualizar as últimas novidades da empresa em out
 - Possibilidade de editar e excluir um post próprio que foi publicado.
 - Ao logar no app, na tela pela vez deverá trazer alguns posts (fake);
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## API
+
+### FAKE API
+- [Usuários](https://6001b50408587400174db4d2.mockapi.io/boticario/api/user)
+- [Postagens](https://6001b50408587400174db4d2.mockapi.io/boticario/api/post)
+
+### API Fornecida
+- [Notícias](https://gb-mobile-app-teste.s3.amazonaws.com/data.json)
+
+## Download
+
+- [Baixar apk](https://github.com/brunozaranza/botitter/raw/main/android/app/release/bottiter_app.apk)
 
