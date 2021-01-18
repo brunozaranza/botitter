@@ -43,13 +43,8 @@ class _PostItemViewState extends State<PostItemView> {
         _loginViewModel.user.email == widget.post.user.email
             ? Container(
                 height: 15,
-                child: IconButton(
-                    iconSize: 15,
-                    icon: Icon(Icons.edit),
-                    onPressed: () =>
-                        Navigator.push(context, MaterialPageRoute(builder: (_) {
-                          return NewPostPage(editPost: widget.post);
-                        })).then((value) => _homeViewModel.fetchAll())))
+                child: Icon(Icons.edit, size:15),
+                )
             : Container(),
       ],
     );
@@ -115,9 +110,18 @@ class _PostItemViewState extends State<PostItemView> {
     _loginViewModel = Provider.of<LoginViewModel>(context);
     _homeViewModel = Provider.of<HomeViewModel>(context);
 
-    return Container(
-      color: Colors.white,
-      child: _postItem(),
+    return GestureDetector(
+      onTap: () {
+        if (_loginViewModel.user.email == widget.post.user.email) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) {
+            return NewPostPage(editPost: widget.post);
+          })).then((value) => _homeViewModel.fetchAll());
+        }
+      },
+      child: Container(
+        color: Colors.white,
+        child: _postItem(),
+      ),
     );
   }
 }

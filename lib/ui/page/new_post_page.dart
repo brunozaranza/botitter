@@ -122,6 +122,7 @@ class _NewPostPageState extends State<NewPostPage> {
         ),
       )
           : Container(
+        width: 80,
           decoration: BoxDecoration(
             color:
             _viewModel.isButtonDisabled ? Colors.grey : Colors.blue,
@@ -132,7 +133,7 @@ class _NewPostPageState extends State<NewPostPage> {
               _viewModel.isButtonDisabled ? null : _onPressed,
               child: Text(
                 widget.editPost != null ? "EDITAR" : "POSTAR",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 12,),
               ))),
     );
   }
@@ -145,7 +146,7 @@ class _NewPostPageState extends State<NewPostPage> {
     return Padding(
       padding: const EdgeInsets.only(right: 8, top: 10, bottom: 10),
       child: Container(
-        width: 60,
+        width: 50,
           decoration: BoxDecoration(
             color: Colors.red,
             borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -155,7 +156,7 @@ class _NewPostPageState extends State<NewPostPage> {
                 _viewModel.deletePost(widget.editPost);
                 Navigator.pop(context);
               },
-              child: Icon(Icons.delete, color: Colors.white,))),
+              child: Icon(Icons.delete, color: Colors.white, size: 20,))),
     );
   }
 
