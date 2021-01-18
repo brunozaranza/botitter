@@ -50,6 +50,10 @@ class LoginViewModel {
     return store.user;
   }
 
+  set user(User u) {
+    store.setUser(u);
+  }
+
   get loading {
     return isLoading;
   }

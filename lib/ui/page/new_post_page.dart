@@ -1,6 +1,6 @@
 import 'package:bottiter/core/model/post.dart';
 import 'package:bottiter/core/model/user.dart';
-import 'package:bottiter/core/util/image_util.dart';
+import 'package:bottiter/core/util/date_util.dart';
 import 'package:bottiter/core/viewmodel/login_viewmodel.dart';
 import 'package:bottiter/core/viewmodel/new_post_viewmodel.dart';
 import 'package:bottiter/ui/view/image_profile_view.dart';
@@ -8,6 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class NewPostPage extends StatefulWidget {
+  final Post editPost;
+
+  NewPostPage({this.editPost});
+
   @override
   _NewPostPageState createState() => _NewPostPageState();
 }
@@ -18,20 +22,52 @@ class _NewPostPageState extends State<NewPostPage> {
   NewPostViewModel _viewModel;
   User _user;
 
+  @override
+  initState(){
+    super.initState();
+    if(widget.editPost != null) {
+      _controller.text = widget.editPost.content;
+    }
+  }
+
   _onPressed() {
     setState(() {
       _viewModel.isLoading = true;
     });
-    _viewModel.addPost(Post(user: _user, content: _controller.text)).then((isSuccess) {
-      if(isSuccess) {
-        Navigator.pop(context);
-      } else {
-        setState(() {
-          _viewModel.isLoading = false;
-        });
-        // TODO: Show a message feedback
-      }
-    });
+
+    if (widget.editPost == null) {
+      _viewModel
+          .addPost(Post(user: _user, content: _controller.text))
+          .then((isSuccess) {
+        if (isSuccess) {
+          Navigator.pop(context);
+        } else {
+          setState(() {
+            _viewModel.isLoading = false;
+          });
+          // TODO: Show a message feedback
+        }
+      });
+    } else {
+      _viewModel.editPost(Post(
+        id: widget.editPost.id,
+        user: widget.editPost.user,
+        content: _controller.text,
+        createdAt: widget.editPost.createdAt,
+        editedAt: DateUtil.parseDateToString(DateTime.now()),
+        link: widget.editPost.link,
+        imageUrl: widget.editPost.imageUrl,
+      )).then((isSuccess) {
+        if (isSuccess) {
+          Navigator.pop(context);
+        } else {
+          setState(() {
+            _viewModel.isLoading = false;
+          });
+          // TODO: Show a message feedback
+        }
+      });
+    }
   }
 
   _appBar() {
@@ -64,46 +100,77 @@ class _NewPostPageState extends State<NewPostPage> {
         ),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 8, top: 10, bottom: 10),
-          child: _viewModel.isLoading ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 20,
-              width: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 3,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-              ),
-            ),
-          ) : Container(
-              decoration: BoxDecoration(
-                color: _viewModel.isButtonDisabled ? Colors.grey : Colors.blue,
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-              ),
-              child: FlatButton(
-                  onPressed: _viewModel.isButtonDisabled ? null : _onPressed,
-                  child: Text(
-                    "Postar",
-                    style: TextStyle(color: Colors.white),
-                  ))),
-        )
+        _deleteButton(),
+        _actionButton(),
       ],
     );
   }
 
+  _actionButton(){
+    return Padding(
+      padding: const EdgeInsets.only(right: 8, top: 10, bottom: 10),
+      child: _viewModel.isLoading
+          ? Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 20,
+          width: 20,
+          child: CircularProgressIndicator(
+            strokeWidth: 3,
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+          ),
+        ),
+      )
+          : Container(
+          decoration: BoxDecoration(
+            color:
+            _viewModel.isButtonDisabled ? Colors.grey : Colors.blue,
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+          ),
+          child: FlatButton(
+              onPressed:
+              _viewModel.isButtonDisabled ? null : _onPressed,
+              child: Text(
+                widget.editPost != null ? "EDITAR" : "POSTAR",
+                style: TextStyle(color: Colors.white),
+              ))),
+    );
+  }
+
+  _deleteButton() {
+    if (widget.editPost == null) {
+      return Container();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(right: 8, top: 10, bottom: 10),
+      child: Container(
+        width: 60,
+          decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+          ),
+          child: FlatButton(
+              onPressed: () {
+                _viewModel.deletePost(widget.editPost);
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.delete, color: Colors.white,))),
+    );
+  }
+
   _body() {
+
     _controller.addListener(() {
       _viewModel.textLength = _controller.text.length;
-      _viewModel.size =
-      _viewModel.textLength >= (_viewModel.maxTextLength - 20)
+      _viewModel.size = _viewModel.textLength >= (_viewModel.maxTextLength - 20)
           ? _viewModel.size = 25
           : 20;
       _viewModel.isButtonDisabled =
-      _viewModel.textLength > _viewModel.maxTextLength ||
-          _viewModel.textLength == 0
-          ? true
-          : false;
+          _viewModel.textLength > _viewModel.maxTextLength ||
+                  _viewModel.textLength == 0
+              ? true
+              : false;
       setState(() {});
     });
 

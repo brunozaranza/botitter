@@ -1,4 +1,3 @@
-import 'package:bottiter/core/store/home_store.dart';
 import 'package:bottiter/core/viewmodel/home_viewmodel.dart';
 import 'package:bottiter/ui/page/new_post_page.dart';
 import 'package:bottiter/ui/view/home_view.dart';
@@ -58,7 +57,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage>
       body: _body(),
       floatingActionButton: _selectedIndex == 0
           ? FloatingActionButton(
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.deepOrange,
               child: Icon(Icons.add, color: Colors.white),
               onPressed: _onFloatingActionButtonPressed,
             )

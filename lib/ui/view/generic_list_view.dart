@@ -37,6 +37,7 @@ class GeneticListView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return RefreshIndicator(
+      backgroundColor: Colors.blue,
       child: _listView(),
       onRefresh: onRefresh,
     );

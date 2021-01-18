@@ -6,22 +6,26 @@ class Database {
 
   static saveUser(User user) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (user != null) {
     prefs.setString("$userKey/id", user.id);
     prefs.setString("$userKey/name", user.name);
     prefs.setString("$userKey/createdAt", user.createdAt);
     prefs.setString("$userKey/email", user.email);
     prefs.setString("$userKey/profile", user.profilePicture);
+    } else {
+      prefs.setString("$userKey/name", "");
+    }
   }
 
   static Future<User> getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    String name = prefs.getString("$userKey/name") == "" ? null: prefs.getString("$userKey/name");
+    if (name == null) return null;
+
     String id = prefs.getString("$userKey/id");
-    String name = prefs.getString("$userKey/name");
     String createdAt = prefs.getString("$userKey/createdAt");
     String email = prefs.getString("$userKey/email");
     String profile = prefs.getString("$userKey/profile");
-
-    if (name == null) return null;
 
     return User(
       id: id,

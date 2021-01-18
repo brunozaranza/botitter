@@ -16,6 +16,16 @@ class NewPostViewModel {
     return response.success;
   }
 
+  Future<bool> editPost(Post post) async {
+    ApiResponse<Post> response = await PostService().edit(post);
+    return response.success;
+  }
+
+  Future<bool> deletePost(Post post) async {
+    ApiResponse<bool> response = await PostService().delete(post);
+    return response.result;
+  }
+
   Color get indicatorColor {
     if(textLength >= maxTextLength - 20) {
       return Colors.orange;

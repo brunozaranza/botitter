@@ -39,6 +39,7 @@ flutter:
 
   assets:
     - assets/images/logo.png
+    - assets/images/zaranza.png
 
   fonts:
     - family: Raleway

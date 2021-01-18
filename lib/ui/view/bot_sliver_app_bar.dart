@@ -1,6 +1,5 @@
 import 'package:bottiter/core/model/user.dart';
 import 'package:bottiter/ui/page/login_page.dart';
-import 'package:bottiter/ui/view/image_profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bottiter/core/repository/database/database.dart';
@@ -37,12 +36,6 @@ class BotSliverAppBar extends SliverPersistentHeaderDelegate {
                       height: expandedHeight,
                       width: MediaQuery.of(context).size.width,
                       child: ListTile(
-                        leading: user.profilePicture != null
-                            ? ImageProfileView(user.profilePicture, size: 30)
-                            : Icon(
-                                Icons.account_circle_outlined,
-                                color: Colors.grey.shade900,
-                              ),
                         trailing: Container(
                             width: 60,
                             child: FlatButton(
@@ -56,7 +49,7 @@ class BotSliverAppBar extends SliverPersistentHeaderDelegate {
                                       color: Colors.blue, fontSize: 12),
                                 ))),
                         title: Text(
-                          user.name,
+                          "Bem-vinde, ${user.name}",
                           style: TextStyle(
                               color: Colors.grey.shade900,
                               fontWeight: FontWeight.w500),
