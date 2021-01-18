@@ -1,16 +1,27 @@
-# bottiter
+# Bottiter
 
-A example flutter microblogging application.
+Uma aplicação de microblogging com Flutter.
 
-## Getting Started
+## Desafio
 
-This project is a starting point for a Flutter application.
+O desafio aqui era fazer um microblogging para que colaboradores e empresa possam enviar pequenas mensagens de até 280 caracteres.
+Com a divisão de posts/twits de funcionários e da empresa em telas diferentes.
 
-A few resources to get you started if this is your first Flutter project:
+Nessa ferramenta, o colaborador poderá ver as postagens de seus colegas na página
+inicial, em ordem cronológica, sempre mostrando a data e foto de todas as postagens.
+O colaborador também poderá visualizar as últimas novidades da empresa em outra tela.
+
+## Requisitos
+
+- Tela de splash screen com informações sobre mim, com nome, e-mail uma foto divertida;
+- Tela de login para informar e-mail e senha;
+- Tela de cadastro de um novo usuário solicitando nome, e-mail e senha;
+- Tela para listar postagens de até 280 caracteres, exibindo nome da pessoa que postou, data do post e texto do post;
+- Tela para listar as últimas novidades da empresa;
+- Tela para fazer um novo post solicitando apenas um campo de texto;
+- Possibilidade de editar e excluir um post próprio que foi publicado.
+- Ao logar no app, na tela pela vez deverá trazer alguns posts (fake);
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
