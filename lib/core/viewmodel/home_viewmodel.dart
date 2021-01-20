@@ -11,6 +11,7 @@ class HomeViewModel {
   HomeViewModel({this.store});
 
   fetchAll() async {
+    this.store.setError(null);
     ApiResponse<List<Post>> response = await PostService().requestAll();
     if (response.success) {
       this.store.setPosts(response.result);
@@ -43,6 +44,10 @@ class HomeViewModel {
 
   String get error {
     return this.store.error;
+  }
+
+  set error(error) {
+    this.store.setError(error);
   }
 
   dispose() {

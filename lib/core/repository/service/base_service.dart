@@ -6,6 +6,9 @@ class BaseService<T> {
   static final String baseUrl =
       "https://6001b50408587400174db4d2.mockapi.io/boticario/api/";
 
+  static final String msgErrorDefault =
+      "Problemas ao tentar acessar servidor.\nVocê está conectado?";
+
   Future<ApiResponse<T>> getItem({String endpoint, String url}) async {
     try {
       var dio = Dio();
@@ -27,7 +30,7 @@ class BaseService<T> {
         return ApiResponse.error(response.statusMessage);
       }
     } catch (e) {
-      return ApiResponse.error("$e");
+      return ApiResponse.error(msgErrorDefault);
     }
   }
 
@@ -38,7 +41,7 @@ class BaseService<T> {
       dynamic response = await dio.post("$baseUrl$endpoint", data: data);
       return ApiResponse.success(response);
     } catch (e) {
-      return ApiResponse.error("$e");
+      return ApiResponse.error(msgErrorDefault);
     }
   }
 
@@ -50,7 +53,7 @@ class BaseService<T> {
       dynamic response = await dio.put("$baseUrl$endpoint/$id", data: data);
       return ApiResponse.success(response);
     } catch (e) {
-      return ApiResponse.error("$e");
+      return ApiResponse.error(msgErrorDefault);
     }
   }
 
@@ -61,7 +64,7 @@ class BaseService<T> {
       dynamic response = await dio.delete("$baseUrl$endpoint/$id");
       return ApiResponse.success(response);
     } catch (e) {
-      return ApiResponse.error("$e");
+      return ApiResponse.error(msgErrorDefault);
     }
   }
 }

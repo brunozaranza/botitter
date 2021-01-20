@@ -44,6 +44,7 @@ class _NewsListViewState extends State<NewsListView>
       if (_viewModel.error != null)
         return BotErrorView(
           msg: _viewModel.error,
+          onTap: () => _viewModel.fetchAll(),
         );
 
       if (_viewModel.list == null) return LoadingView();

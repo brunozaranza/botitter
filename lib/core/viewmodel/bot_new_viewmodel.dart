@@ -10,6 +10,7 @@ class BotNewViewModel {
   BotNewViewModel({this.store});
 
   fetchAll() async {
+    this.store.setError(null);
     ApiResponse<List<BotNew>> response = await BotNewService().requestAll();
     if(response.success) {
       this.store.setNews(response.result);
