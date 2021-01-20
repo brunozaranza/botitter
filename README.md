@@ -2,8 +2,10 @@
 
 Uma aplicação de microblogging com Flutter.
 
+<span align="center" style="display:inline-block">
+  <img src="/prints/print1_splash.png" width="200" height="400" /> <img src="/prints/print2_home.png" width="200" height="400" /> <img src="/prints/print3_a_new_post.png" width="200" height="400" /><br><img src="/prints/print4_post_edit.png" width="200" height="400" /> <img src="/prints/print5_news.png" width="200" height="400" />
+</span>
 
-<img src="/prints/print1_splash.png" width="200" height="400" /> <img src="/prints/print2_home.png" width="200" height="400" /> <img src="/prints/print3_a_new_post.png" width="200" height="400" /> <img src="/prints/print4_post_edit.png" width="200" height="400" /> <img src="/prints/print5_news.png" width="200" height="400" />
 
 ## Desafio
 
