@@ -2,6 +2,9 @@
 
 Uma aplicação de microblogging com Flutter.
 
+
+<img src="/prints/print1_splash.png" width="180" height="350" /> <img src="/prints/print2_home.png" width="180" height="350" /> <img src="/prints/print3_a_new_post.png" width="180" height="350" /> <img src="/prints/print4_post_edit.png" width="180" height="350" /> <img src="/prints/print5_news.png" width="180" height="350" />
+
 ## Desafio
 
 O desafio aqui era fazer um microblogging para que colaboradores e empresa possam enviar pequenas mensagens de até 280 caracteres.
